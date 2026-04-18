@@ -59,9 +59,24 @@ html { scroll-behavior: smooth; font-size: 16px; }
   background: rgba(7,9,16,0.75);
   backdrop-filter: blur(24px) saturate(1.6);
   border-bottom: 1px solid var(--border);
-  transition: all 0.4s;
+  transform: translate3d(0, -10px, 0);
+  transition:
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease,
+    background 0.4s ease;
 }
 [data-theme="light"] .portfolio-page nav { background: rgba(240,243,251,0.82); }
+.portfolio-page.is-ready nav {
+  transform: translate3d(0, 0, 0);
+}
+.portfolio-page nav.nav-elevated {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  border-bottom-color: transparent;
+}
+[data-theme="light"] .portfolio-page nav.nav-elevated {
+  box-shadow: 0 10px 36px rgba(15, 23, 42, 0.1);
+}
 
 .portfolio-page .nav-logo {
   font-family: var(--font-cormorant), serif;
@@ -180,6 +195,12 @@ html { scroll-behavior: smooth; font-size: 16px; }
     radial-gradient(ellipse 40% 40% at 20% 80%, rgba(124,109,250,0.06) 0%, transparent 60%),
     radial-gradient(ellipse 30% 40% at 50% 10%, rgba(0,229,180,0.05) 0%, transparent 55%),
     var(--bg);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  animation: portfolio-mesh-drift 22s ease-in-out infinite alternate;
+}
+@keyframes portfolio-mesh-drift {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.94; }
 }
 [data-theme="light"] .portfolio-page .hero-mesh {
   background:
@@ -218,7 +239,8 @@ html { scroll-behavior: smooth; font-size: 16px; }
 
 .portfolio-page .hero-eyebrow {
   display: flex; align-items: center; gap: 0.8rem;
-  margin-bottom: 1.8rem; animation: portfolio-fadeUp 0.7s ease both;
+  margin-bottom: 1.8rem;
+  animation: portfolio-fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .portfolio-page .eyebrow-pill {
   display: inline-flex; align-items: center; gap: 0.5rem;
@@ -243,13 +265,13 @@ html { scroll-behavior: smooth; font-size: 16px; }
   font-size: clamp(3rem, 6vw, 5.5rem);
   font-weight: 600; line-height: 0.92; letter-spacing: -0.01em;
   color: var(--text);
-  animation: portfolio-fadeUp 0.7s 0.1s ease both;
+  animation: portfolio-fadeUp 0.8s 0.08s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .portfolio-page .hero-name em { font-style: italic; color: var(--accent); display: block; }
 
 .portfolio-page .hero-role-bar {
   margin-top: 1.2rem; display: flex; align-items: center; gap: 1rem;
-  animation: portfolio-fadeUp 0.7s 0.2s ease both;
+  animation: portfolio-fadeUp 0.8s 0.16s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .portfolio-page .role-line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--accent2), transparent); }
 .portfolio-page .hero-role-text {
@@ -260,12 +282,12 @@ html { scroll-behavior: smooth; font-size: 16px; }
 .portfolio-page .hero-about {
   margin-top: 1.8rem; line-height: 1.85; color: var(--text2);
   font-size: 0.97rem; max-width: 560px;
-  animation: portfolio-fadeUp 0.7s 0.3s ease both;
+  animation: portfolio-fadeUp 0.8s 0.24s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .portfolio-page .hero-cta {
   margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap;
-  animation: portfolio-fadeUp 0.7s 0.4s ease both;
+  animation: portfolio-fadeUp 0.8s 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .portfolio-page .cta-primary {
   display: inline-flex; align-items: center; gap: 0.5rem;
@@ -273,7 +295,7 @@ html { scroll-behavior: smooth; font-size: 16px; }
   padding: 0.85rem 2rem; border-radius: 10px;
   font-weight: 700; font-size: 0.85rem; letter-spacing: 0.05em;
   text-decoration: none; text-transform: uppercase;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
   box-shadow: 0 0 32px rgba(0,200,255,0.3);
 }
 .portfolio-page .cta-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 40px rgba(0,200,255,0.4); }
@@ -295,15 +317,26 @@ html { scroll-behavior: smooth; font-size: 16px; }
   padding: 0.85rem 2rem; border-radius: 10px;
   font-weight: 600; font-size: 0.85rem; letter-spacing: 0.05em;
   text-decoration: none; text-transform: uppercase;
-  transition: border-color 0.2s, color 0.2s;
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s ease;
 }
-.portfolio-page .cta-ghost:hover { border-color: var(--accent); color: var(--accent); }
+.portfolio-page .cta-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 200, 255, 0.12);
+}
 
 .portfolio-page .hero-monitor {
   background: var(--surface);
   border: 1px solid var(--border2);
   border-radius: 20px; padding: 1.8rem;
-  animation: portfolio-fadeUp 0.7s 0.25s ease both;
+  animation:
+    portfolio-fadeUp 0.85s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both,
+    portfolio-monitor-glow 5s ease-in-out 1s infinite alternate;
   position: relative; overflow: hidden;
 }
 .portfolio-page .hero-monitor::before {
@@ -335,9 +368,16 @@ html { scroll-behavior: smooth; font-size: 16px; }
   background: var(--bg2); border: 1px solid var(--border);
   border-radius: 12px; padding: 0.9rem;
   text-align: center;
-  transition: border-color 0.2s;
+  transition:
+    border-color 0.25s ease,
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease;
 }
-.portfolio-page .vital-tile:hover { border-color: var(--accent); }
+.portfolio-page .vital-tile:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 200, 255, 0.08);
+}
 .portfolio-page .vital-label {
   font-family: var(--font-jetbrains), monospace;
   font-size: 0.58rem; letter-spacing: 0.1em;
@@ -374,8 +414,19 @@ html { scroll-behavior: smooth; font-size: 16px; }
 .portfolio-page .badge-b { border-color: rgba(0,229,180,0.3); color: var(--accent2); background: rgba(0,229,180,0.07); }
 
 @keyframes portfolio-fadeUp {
-  from { opacity: 0; transform: translateY(28px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes portfolio-monitor-glow {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(0, 200, 255, 0.06); }
+  50% { box-shadow: 0 16px 48px rgba(0, 200, 255, 0.1); }
 }
 
 .portfolio-page section { padding: 6rem 3rem; }
@@ -396,8 +447,82 @@ html { scroll-behavior: smooth; font-size: 16px; }
 }
 .portfolio-page .sec-title em { font-style: italic; color: var(--accent); }
 
-.portfolio-page .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
-.portfolio-page .reveal.visible { opacity: 1; transform: translateY(0); }
+.portfolio-page .reveal {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.portfolio-page .reveal.visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.portfolio-page .about-strip-inner.reveal .stat-block {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.portfolio-page .about-strip-inner.reveal.visible .stat-block:nth-child(1) {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.04s;
+}
+.portfolio-page .about-strip-inner.reveal.visible .stat-block:nth-child(2) {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.1s;
+}
+.portfolio-page .about-strip-inner.reveal.visible .stat-block:nth-child(3) {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.16s;
+}
+.portfolio-page .about-strip-inner.reveal.visible .stat-block:nth-child(4) {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.22s;
+}
+
+.portfolio-page .skills-mosaic.reveal .skill-block {
+  opacity: 0;
+  transform: translate3d(0, 14px, 0);
+  transition:
+    opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.25s ease;
+  transition-delay: calc(var(--stagger, 0) * 32ms);
+}
+.portfolio-page .skills-mosaic.reveal.visible .skill-block {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.portfolio-page .contact-cards.stagger-cards.reveal .contact-card {
+  opacity: 0;
+  transform: translate3d(14px, 0, 0);
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.portfolio-page .contact-cards.stagger-cards.reveal.visible .contact-card:nth-child(1) {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.06s;
+}
+.portfolio-page .contact-cards.stagger-cards.reveal.visible .contact-card:nth-child(2) {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.14s;
+}
+.portfolio-page .contact-cards.stagger-cards.reveal.visible .contact-card:nth-child(3) {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.22s;
+}
 
 .portfolio-page .about-strip {
   background: var(--surface);
@@ -458,8 +583,32 @@ html { scroll-behavior: smooth; font-size: 16px; }
 .portfolio-page .exp-toc-item {
   display: flex; align-items: center; gap: 0.8rem;
   padding: 1rem 1.2rem; border-radius: 10px;
-  cursor: pointer; transition: background 0.2s;
+  cursor: pointer;
   margin-bottom: 0.5rem;
+  transform: translate3d(-10px, 0, 0);
+  transition:
+    background 0.2s ease,
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.portfolio-page.is-ready .exp-toc-item:nth-child(1) {
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.08s;
+}
+.portfolio-page.is-ready .exp-toc-item:nth-child(2) {
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.18s;
+}
+.portfolio-page.is-ready .exp-toc-item:nth-child(3) {
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.28s;
+}
+.portfolio-page.is-ready .exp-toc-item:nth-child(4) {
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.38s;
+}
+.portfolio-page.is-ready .exp-toc-item:nth-child(5) {
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0.48s;
 }
 .portfolio-page .exp-toc-item:hover, .portfolio-page .exp-toc-item.active { background: var(--surface2); }
 .portfolio-page .exp-toc-item.active .exp-toc-dot { background: var(--accent); }
@@ -530,6 +679,10 @@ html { scroll-behavior: smooth; font-size: 16px; }
   background: linear-gradient(135deg, var(--accent), var(--accent3));
   display: flex; align-items: center; justify-content: center;
   font-size: 1.5rem;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.portfolio-page .cert-card:hover .cert-icon-wrap {
+  transform: scale(1.06) rotate(-3deg);
 }
 .portfolio-page .cert-name {
   font-family: var(--font-cormorant), serif;
@@ -622,6 +775,69 @@ html { scroll-behavior: smooth; font-size: 16px; }
 .portfolio-page .footer-mono {
   font-family: var(--font-jetbrains), monospace;
   font-size: 0.65rem; color: var(--text3); letter-spacing: 0.08em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .portfolio-page nav {
+    transform: none !important;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease !important;
+  }
+  .portfolio-page .hero-mesh {
+    animation: none !important;
+  }
+  .portfolio-page .hero-eyebrow,
+  .portfolio-page .hero-name,
+  .portfolio-page .hero-role-bar,
+  .portfolio-page .hero-about,
+  .portfolio-page .hero-cta,
+  .portfolio-page .hero-monitor {
+    animation: none !important;
+  }
+  .portfolio-page .orb {
+    animation: none !important;
+  }
+  .portfolio-page .live-dot,
+  .portfolio-page .monitor-dot {
+    animation: none !important;
+  }
+  .portfolio-page .reveal,
+  .portfolio-page .reveal.visible {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .portfolio-page .about-strip-inner.reveal .stat-block,
+  .portfolio-page .about-strip-inner.reveal.visible .stat-block {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .portfolio-page .skills-mosaic.reveal .skill-block,
+  .portfolio-page .skills-mosaic.reveal.visible .skill-block {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: background 0.2s ease !important;
+    transition-delay: 0ms !important;
+  }
+  .portfolio-page .contact-cards.stagger-cards.reveal .contact-card,
+  .portfolio-page .contact-cards.stagger-cards.reveal.visible .contact-card {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: border-color 0.2s ease, background 0.2s ease !important;
+  }
+  .portfolio-page .exp-toc-item {
+    transform: none !important;
+    transition: background 0.2s ease !important;
+  }
+  .portfolio-page .cert-icon-wrap {
+    transition: none !important;
+  }
+  .portfolio-page .cert-card:hover .cert-icon-wrap {
+    transform: none !important;
+  }
 }
 
 @media (max-width: 900px) {

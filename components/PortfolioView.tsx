@@ -1,6 +1,7 @@
 "use client";
 
 import type { PortfolioData } from "@/types/portfolio";
+import type { CSSProperties } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const SKILL_ICONS = [
@@ -78,6 +79,8 @@ export default function PortfolioView({ data }: { data: PortfolioData }) {
   const ecgWrapRef = useRef<HTMLDivElement>(null);
   const [navOpen, setNavOpen] = useState(false);
   const [activeExp, setActiveExp] = useState(0);
+  const [ready, setReady] = useState(false);
+  const [navElevated, setNavElevated] = useState(false);
 
   const experienceOrdered = [...data.experience].reverse();
   const yearsLabel = parseYearsExp(data.about);
@@ -158,6 +161,18 @@ export default function PortfolioView({ data }: { data: PortfolioData }) {
   }, [drawECG]);
 
   useEffect(() => {
+    const id = requestAnimationFrame(() => setReady(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => setNavElevated(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -200,8 +215,11 @@ export default function PortfolioView({ data }: { data: PortfolioData }) {
   };
 
   return (
-    <div className="portfolio-page">
-      <nav id="mainNav">
+    <div className={`portfolio-page${ready ? " is-ready" : ""}`}>
+      <nav
+        id="mainNav"
+        className={navElevated ? "nav-elevated" : undefined}
+      >
         <div className="nav-logo">
           {first}
           <span style={{ color: "var(--text3)" }}>&nbsp;/&nbsp;</span>
@@ -378,23 +396,23 @@ export default function PortfolioView({ data }: { data: PortfolioData }) {
       </section>
 
       <div className="about-strip">
-        <div className="about-strip-inner">
-          <div className="stat-block reveal">
+        <div className="about-strip-inner reveal">
+          <div className="stat-block">
             <div className="stat-block-icon">🏥</div>
             <div className="stat-block-num">{yearsLabel}</div>
             <div className="stat-block-label">Years Critical Care Experience</div>
           </div>
-          <div className="stat-block reveal">
+          <div className="stat-block">
             <div className="stat-block-icon">🧠</div>
             <div className="stat-block-num">{icuSpecs}</div>
             <div className="stat-block-label">ICU Specialisations</div>
           </div>
-          <div className="stat-block reveal">
+          <div className="stat-block">
             <div className="stat-block-icon">🎓</div>
             <div className="stat-block-num">{certCount}</div>
             <div className="stat-block-label">Active Certifications</div>
           </div>
-          <div className="stat-block reveal">
+          <div className="stat-block">
             <div className="stat-block-icon">⚡</div>
             <div className="stat-block-num">ACLS</div>
             <div className="stat-block-label">
@@ -418,7 +436,11 @@ export default function PortfolioView({ data }: { data: PortfolioData }) {
           </div>
           <div className="skills-mosaic reveal">
             {data.skills.map((skill, i) => (
-              <div key={skill} className="skill-block">
+              <div
+                key={skill}
+                className="skill-block"
+                style={{ "--stagger": i } as CSSProperties}
+              >
                 <div className="skill-ico">
                   {SKILL_ICONS[i % SKILL_ICONS.length]}
                 </div>
@@ -610,7 +632,7 @@ export default function PortfolioView({ data }: { data: PortfolioData }) {
                 Reach out by phone or email.
               </p>
             </div>
-            <div className="contact-cards reveal">
+            <div className="contact-cards reveal stagger-cards">
               <div className="contact-card">
                 <div className="contact-card-icon">📞</div>
                 <div>
@@ -637,7 +659,7 @@ export default function PortfolioView({ data }: { data: PortfolioData }) {
         </div>
       </section>
 
-      <footer>
+      <footer className="reveal">
         <div className="footer-text">
           © {new Date().getFullYear()}{" "}
           <span className="footer-accent">{data.name}</span> · {data.role}
