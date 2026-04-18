@@ -1,0 +1,80 @@
+{
+    "name": "Karthick Raja K",
+    "role": "Staff Nurse – Critical Care",
+    "about": "Compassionate and highly skilled Critical Care Registered Nurse with 3+ years of experience in Neuro ICU and Transplant ICU settings. Expertise in managing complex neurological cases such as traumatic brain injuries, stroke, and post-craniotomy patients, along with comprehensive transplant patient care. Proficient in hemodynamic monitoring, ventilator management, and delivering high-quality patient-centered care in fast-paced environments.",
+    
+    "contact": {
+      "phoneNo": "+91 6380221518",
+      "email": "omprakashkarthick001@gmail.com",
+      "address": "9/177, Manchapuli Colony"
+    },
+  
+    "education": [
+      {
+        "year": "2018 - 2022",
+        "degree": "Bachelor of Science in Nursing",
+        "university": "Rajiv Gandhi University of Health Sciences"
+      }
+    ],
+  
+    "skills": [
+      "Neuro ICU Patient Management",
+      "Transplant ICU Care",
+      "Hemodynamic Monitoring",
+      "Ventilator Management",
+      "Neurological Assessment (GCS, Pupil Monitoring)",
+      "ICP Monitoring & EVD Handling",
+      "Critical Care Pharmacology",
+      "Fluid & Electrolyte Management",
+      "ACLS Certified",
+      "BLS Certified",
+      "Patient Safety & Infection Control",
+      "Communication & Team Collaboration"
+    ],
+  
+    "experience": [
+      {
+        "year": "2023 - 2025",
+        "name": "Sakra World Hospital",
+        "location": "Bangalore",
+        "role": "Neuro Surgical ICU Nurse",
+        "responsibilities": [
+          "Performed advanced neurological assessments including GCS and pupil reactivity",
+          "Managed ICP monitors, EVDs, and lumbar drains for neurosurgical patients",
+          "Administered neuro-specific medications such as Mannitol, hypertonic saline, and anti-epileptics",
+          "Handled post-operative care for craniotomy, spinal, and trauma patients",
+          "Assisted in acute stroke management and critical neuro emergency protocols"
+        ]
+      },
+      {
+        "year": "2025 - 2026",
+        "name": "KIMS Hospital",
+        "location": "Bangalore",
+        "role": "Transplant Staff Nurse",
+        "responsibilities": [
+          "Managed pre- and post-operative care for kidney, liver, and multi-organ transplant patients",
+          "Monitored patients for signs of organ rejection, infection, and complications",
+          "Administered and titrated immunosuppressive therapies",
+          "Performed advanced hemodynamic monitoring using arterial and central lines",
+          "Maintained fluid and electrolyte balance in critically ill transplant patients"
+        ]
+      }
+    ],
+  
+    "certifications": [
+      {
+        "issuerName": "Apollo Hospitals Enterprise Limited",
+        "issuedOn": "Nov 2024",
+        "expiresAt": "Nov 2026",
+        "courseName": "Advanced Cardiovascular Life Support (ACLS)",
+        "url": "https://ecards.heart.org/api/relay/v1/ecard/getfullpdf?eCardUId=CE0E492C-93EF-4785-8D92-DBC0C6AEA69C&langId=2"
+      },
+      {
+        "issuerName": "Apollo Hospitals Enterprise Limited",
+        "issuedOn": "Nov 2024",
+        "expiresAt": "Nov 2026",
+        "courseName": "Basic Life Support (BLS - CPR & AED)",
+        "url": "https://ecards.heart.org/api/relay/v1/ecard/getfullpdf?eCardUId=6619E4C6-4DDD-4A78-874B-F6BE37984100&langId=2"
+      }
+    ]
+  }
